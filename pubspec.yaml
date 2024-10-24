@@ -21,3 +21,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets\videos\body_cuadriceps_video.mp4
+    - assets\videos\isquiotibiales.mp4
+    - assets\videos\gemelos.mp4

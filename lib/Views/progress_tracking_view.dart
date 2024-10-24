@@ -19,27 +19,37 @@ class ProgressTrackingView extends StatefulWidget {
 }
 
 class _ProgressTrackingViewState extends State<ProgressTrackingView> {
-  VideoPlayerController? _controller;  // Cambiado para permitir nulos
+  VideoPlayerController? _controller;
 
   @override
   void initState() {
     super.initState();
-    
-    // Solo inicializar el controlador si el músculo es Cuádriceps
+
+    // Inicializar el controlador del video según el músculo seleccionado
     if (widget.muscle == "Cuádriceps") {
       _controller = VideoPlayerController.asset(
         'assets/videos/body_cuadriceps_video.mp4',
       )..initialize().then((_) {
           setState(() {});  // Refresca la pantalla cuando el video esté listo
-          _controller!.play();  // Comienza la reproducción automáticamente
+        });
+    } else if (widget.muscle == "Isquiotibiales") {
+      _controller = VideoPlayerController.asset(
+        'assets/videos/isquiotibiales.mp4',
+      )..initialize().then((_) {
+          setState(() {});  // Refresca la pantalla cuando el video esté listo
+        });
+    } else if (widget.muscle == "Gemelos") {
+      _controller = VideoPlayerController.asset(
+        'assets/videos/gemelos.mp4',
+      )..initialize().then((_) {
+          setState(() {});  // Refresca la pantalla cuando el video esté listo
         });
     }
   }
 
   @override
   void dispose() {
-    // Solo liberar el controlador si fue inicializado
-    _controller?.dispose();
+    _controller?.dispose();  // Liberar el controlador del video
     super.dispose();
   }
 
@@ -77,9 +87,9 @@ class _ProgressTrackingViewState extends State<ProgressTrackingView> {
           SizedBox(height: 20),
           Text('Músculo a Monitorear: ${widget.muscle}', style: TextStyle(fontSize: 18)),
           SizedBox(height: 20),
-          
-          // Verificar si el video está inicializado y mostrarlo
-          widget.muscle == "Cuádriceps" && _controller != null
+
+          // Mostrar el video si está inicializado, dependiendo del músculo
+          (widget.muscle == "Cuádriceps" || widget.muscle == "Isquiotibiales" || widget.muscle == "Gemelos") && _controller != null
               ? _controller!.value.isInitialized
                   ? AspectRatio(
                       aspectRatio: _controller!.value.aspectRatio,
