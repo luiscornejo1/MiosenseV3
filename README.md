@@ -1,3 +1,3 @@
-# miosense
+# miosenseV3
 
-A new Flutter project.
+Tercera Version del Proyecto miosense por Luis Cornejo Rodriguez
