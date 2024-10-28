@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miosense/Views/track_muscle_view.dart';
 import 'package:video_player/video_player.dart';
 
 class ProgressTrackingView extends StatefulWidget {
@@ -102,17 +103,12 @@ class _ProgressTrackingViewState extends State<ProgressTrackingView> {
           ElevatedButton(
             onPressed: () {
               // Verificar si hay controlador y si el video está listo
-              if (_controller != null && _controller!.value.isInitialized) {
-                if (_controller!.value.isPlaying) {
-                  _controller!.pause();
-                } else {
-                  _controller!.play();
-                }
-                setState(() {});
-              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TrackMuscleView()),
+              );
             },
-            child: Text(
-              _controller != null && _controller!.value.isPlaying ? 'Pausar' : 'Iniciar Trackeo',
+            child: Text('Iniciar Trackeo',
             ),
           ),
         ],
