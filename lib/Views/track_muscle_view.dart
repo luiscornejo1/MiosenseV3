@@ -31,7 +31,7 @@ class _TrackMuscleViewState extends State<TrackMuscleView> {
   }
 
   void connectToSocket() {
-    socket = IO.io('http://192.168.18.200:3000', <String, dynamic>{
+    socket = IO.io('https://miosense-backend.onrender.com', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
     });
