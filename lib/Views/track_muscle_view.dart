@@ -33,16 +33,23 @@ class _TrackMuscleViewState extends State<TrackMuscleView> {
   void connectToSocket() {
     socket = IO.io('https://miosense-backend.onrender.com', <String, dynamic>{
       'transports': ['websocket'],
-      'autoConnect': false,
+      'autoConnect': true,
     });
-
-    socket.connect();
-
+    
     socket.onConnect((_) {
       print("Conectado al servidor WebSocket");
-    });
+      });
+      
+    socket.onConnectError((data) {
+        print("Error de conexión: $data");
+        });
 
+    socket.onError((data) {
+          print("Error: $data");
+          });     
     socket.on('muscleData', (data) {
+      print("Recibiendo datos de tracking: $data");
+      
       setState(() {
         valorSensor = data['value'];
         listaDatosRecolectados.add(valorSensor); // Guardamos los datos
